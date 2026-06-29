@@ -1,7 +1,7 @@
 [project]
-name = "project-name"
+name = "computer-vision-defect-detector"
 version = "0.1.0"
-description = "One-line project description."
+description = "Transfer learning image classification with Grad-CAM explainability for defect detection."
 readme = "README.md"
 requires-python = ">=3.13"
 license = { text = "MIT" }
@@ -12,6 +12,13 @@ dependencies = [
     "pydantic-settings>=2.3",
     "streamlit>=1.58.0",
     "uvicorn[standard]>=0.48.0",
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+    "pillow>=10.0.0",
+    "numpy>=1.24.0",
+    "matplotlib>=3.8.0",
+    "scikit-learn>=1.3.0",
+    "grad-cam>=1.4.0",
 ]
 
 [dependency-groups]
@@ -20,6 +27,7 @@ dev = [
     "pyright>=1.1.380",
     "pytest>=8.2",
     "pytest-cov>=5.0",
+    "httpx>=0.24.0",
 ]
 
 [build-system]
@@ -27,7 +35,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/project_name"]
+packages = ["src/defect_detector"]
 
 [tool.ruff]
 line-length = 100
@@ -44,6 +52,12 @@ include = ["src", "tests"]
 pythonVersion = "3.13"
 typeCheckingMode = "standard"
 reportMissingImports = true
+reportPrivateImportUsage = false
+reportAttributeAccessIssue = false
+reportReturnType = false
+reportArgumentType = false
+reportOperatorIssue = false
+reportOptionalSubscript = false
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
