@@ -12,6 +12,7 @@ from sklearn.metrics import (
     accuracy_score,
     confusion_matrix,
     f1_score,
+    precision_recall_fscore_support,
     precision_score,
     recall_score,
 )
@@ -63,7 +64,7 @@ def evaluate(
     accuracy = accuracy_score(all_labels, all_preds)
     precision = precision_score(all_labels, all_preds, average="macro", zero_division=0)
     recall = recall_score(all_labels, all_preds, average="macro", zero_division=0)
-    f1 = f1_score(all_labels, all_preds, average="macro", zero_division=0)
+    f1_macro = f1_score(all_labels, all_preds, average="macro", zero_division=0)
 
     # Per-class metrics
     per_class_metrics = {}
@@ -71,20 +72,19 @@ def evaluate(
         class_mask = all_labels == i
         if class_mask.sum() > 0:
             class_acc = accuracy_score(all_labels[class_mask], all_preds[class_mask])
-            class_prec = precision_score(
-                all_labels[class_mask], all_preds[class_mask], zero_division=0
-            )
-            class_rec = recall_score(
-                all_labels[class_mask], all_preds[class_mask], zero_division=0
-            )
-            class_f1 = f1_score(
-                all_labels[class_mask], all_preds[class_mask], zero_division=0
+            # Use labels parameter to avoid issues with missing classes
+            prec, rec, f1_class, _ = precision_recall_fscore_support(
+                all_labels[class_mask],
+                all_preds[class_mask],
+                average=None,
+                labels=[i],
+                zero_division=0,
             )
             per_class_metrics[class_name] = {
                 "accuracy": float(class_acc),
-                "precision": float(class_prec),
-                "recall": float(class_rec),
-                "f1": float(class_f1),
+                "precision": float(prec[0]) if isinstance(prec, np.ndarray) else float(prec),  # type: ignore
+                "recall": float(rec[0]) if isinstance(rec, np.ndarray) else float(rec),  # type: ignore
+                "f1": float(f1_class[0]) if isinstance(f1_class, np.ndarray) else float(f1_class),  # type: ignore
                 "support": int(class_mask.sum()),
             }
 
@@ -92,7 +92,7 @@ def evaluate(
         "accuracy": float(accuracy),
         "precision_macro": float(precision),
         "recall_macro": float(recall),
-        "f1_macro": float(f1),
+        "f1_macro": float(f1_macro),
         "per_class": per_class_metrics,
         "confusion_matrix": confusion_matrix(all_labels, all_preds).tolist(),
     }

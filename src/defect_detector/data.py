@@ -47,7 +47,10 @@ class NEUDefectDataset(Dataset):
         for class_idx, class_name in enumerate(self.CLASSES):
             class_dir = self.root_dir / class_name
             if class_dir.exists():
-                for img_path in sorted(class_dir.glob("*.bmp")):
+                # Support both .bmp and .jpg formats
+                for img_path in sorted(class_dir.glob("*.bmp")) + sorted(
+                    class_dir.glob("*.jpg")
+                ) + sorted(class_dir.glob("*.png")):
                     self.images.append(img_path)
                     self.labels.append(class_idx)
 

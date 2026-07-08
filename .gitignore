@@ -27,8 +27,14 @@ data/interim/
 *.pkl
 *.pt
 *.onnx
-models/
+models/*.pt
+models/training_history.json
 mlruns/
+
+# Keep evaluation outputs and visualizations
+!models/test_metrics.json
+!models/confusion_matrix.png
+!models/grad_cam_examples/
 
 # Notebooks
 .ipynb_checkpoints/

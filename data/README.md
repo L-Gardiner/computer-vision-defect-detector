@@ -47,7 +47,7 @@ data/
 3. **Organize files**:
 ```bash
 # After downloading and extracting, organize into class folders:
-cd /path/to/computer-vision-defect-detector-2/data/raw
+cd /path/to/computer-vision-defect-detector/data/raw
 
 # Create class directories
 mkdir -p crazing inclusion patches pitted_surface rolled-in_scale scratches
