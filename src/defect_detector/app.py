@@ -103,9 +103,7 @@ def main():
             # Top 3 predictions
             st.subheader("Top 3 Predictions")
             for i, pred in enumerate(results["top_3"], 1):
-                st.write(
-                    f"{i}. **{pred['class']}**: {pred['confidence']:.1%}"
-                )
+                st.write(f"{i}. **{pred['class']}**: {pred['confidence']:.1%}")
 
         # Grad-CAM visualization
         st.subheader("🔥 Grad-CAM Explainability")

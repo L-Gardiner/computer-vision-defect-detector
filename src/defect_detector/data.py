@@ -48,9 +48,11 @@ class NEUDefectDataset(Dataset):
             class_dir = self.root_dir / class_name
             if class_dir.exists():
                 # Support both .bmp and .jpg formats
-                for img_path in sorted(class_dir.glob("*.bmp")) + sorted(
-                    class_dir.glob("*.jpg")
-                ) + sorted(class_dir.glob("*.png")):
+                for img_path in (
+                    sorted(class_dir.glob("*.bmp"))
+                    + sorted(class_dir.glob("*.jpg"))
+                    + sorted(class_dir.glob("*.png"))
+                ):
                     self.images.append(img_path)
                     self.labels.append(class_idx)
 
@@ -157,9 +159,7 @@ def get_dataloaders(
     )
 
     # Apply augmentation to training set
-    train_dataset.dataset.transform = get_transforms(
-        image_size=image_size, augment=True
-    )
+    train_dataset.dataset.transform = get_transforms(image_size=image_size, augment=True)
 
     # Create dataloaders
     train_loader = DataLoader(

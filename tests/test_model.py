@@ -72,9 +72,7 @@ def test_model_save_and_load():
         # Both should have same shape
         assert original_output.shape == loaded_output.shape
         # Weights should be identical after loading
-        for p1, p2 in zip(
-            model.parameters(), loaded_model.parameters(), strict=True
-        ):
+        for p1, p2 in zip(model.parameters(), loaded_model.parameters(), strict=True):
             assert torch.allclose(p1, p2)  # type: ignore[attr-defined]
 
 

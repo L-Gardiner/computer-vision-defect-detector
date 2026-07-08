@@ -165,8 +165,7 @@ def train(
             patience_counter += 1
             if patience_counter >= early_stopping_patience:
                 logger.info(
-                    f"Early stopping at epoch {epoch + 1} "
-                    f"(patience={early_stopping_patience})"
+                    f"Early stopping at epoch {epoch + 1} (patience={early_stopping_patience})"
                 )
                 break
 

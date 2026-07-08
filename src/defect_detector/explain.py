@@ -149,9 +149,7 @@ def visualize_prediction(
         # Overlay
         axes[2].imshow(image)
         axes[2].imshow(heatmap, cmap="hot", alpha=0.5)
-        axes[2].set_title(
-            f"Prediction: {predicted_class}\nConfidence: {confidence:.2%}"
-        )
+        axes[2].set_title(f"Prediction: {predicted_class}\nConfidence: {confidence:.2%}")
         axes[2].axis("off")
 
         fig.tight_layout()

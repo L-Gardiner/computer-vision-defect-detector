@@ -33,9 +33,7 @@ class DefectDetectionModel(nn.Module):
             in_features = self.backbone.fc.in_features
             self.backbone.fc = nn.Identity()  # Remove original head
         elif backbone == "mobilenet_v3_small":
-            self.backbone = models.mobilenet_v3_small(
-                weights="DEFAULT" if pretrained else None
-            )
+            self.backbone = models.mobilenet_v3_small(weights="DEFAULT" if pretrained else None)
             # MobileNetV3 has a sequential classifier
             # Get input features from the first layer of the classifier
             in_features = self.backbone.classifier[0].in_features
