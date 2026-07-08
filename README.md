@@ -221,8 +221,8 @@ computer-vision-defect-detector/
 │   └── README.md          # Dataset documentation
 ├── docs/
 │   ├── architecture.md    # Detailed pipeline diagram
-│   ├── model_card_template.md
-│   └── experiment_log_template.md
+│   ├── experiment_log.md  # Experiment log
+│   └── model_card.md      # Model card
 ├── Makefile               # make check, make run-app, make run-api
 ├── pyproject.toml         # uv + pytest + ruff + pyright config
 └── README.md              # This file

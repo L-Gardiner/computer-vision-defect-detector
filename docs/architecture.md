@@ -57,7 +57,7 @@
 │                    Data Pipeline                                │
 ├─────────────────────────────────────────────────────────────────┤
 │  data.py: NEUDefectDataset                                      │
-│  ├── Load images from data/raw/{class_name}/*.bmp               │
+│  ├── Load images from data/raw/{class_name}/*.{bmp,jpg,png}               │
 │  ├── Apply transforms (resize, normalize)                       │
 │  └── Return (image_tensor, label)                               │
 │                                                                  │

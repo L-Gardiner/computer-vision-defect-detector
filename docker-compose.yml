@@ -1,9 +1,0 @@
-# Optional docker-compose template. Uncomment and adapt per project.
-#
-# services:
-#   api:
-#     build: .
-#     ports:
-#       - "8000:8000"
-#     env_file:
-#       - .env
