@@ -217,7 +217,3 @@ computer-vision-defect-detector-2/
 ## License
 
 MIT. See `LICENSE` for details.
-
----
-
-**Generated with [Devin](https://devin.ai)**
