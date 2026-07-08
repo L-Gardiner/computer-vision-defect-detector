@@ -140,7 +140,7 @@ make run-api
 | Scratches | 97.67% | 100.00% | 97.67% | 98.82% | 43 |
 
 **Confusion Matrix:**
-![Confusion Matrix](models/confusion_matrix.png)
+![Confusion Matrix](img/confusion_matrix.png)
 
 **Grad-CAM Visualizations (Model Explainability):**
 
@@ -148,12 +148,12 @@ The model correctly identifies defect regions through Grad-CAM heatmaps. Below a
 
 | Class | Grad-CAM Visualization |
 |-------|------------------------|
-| Crazing | ![Crazing Example](models/grad_cam_examples/crazing_example.png) |
-| Inclusion | ![Inclusion Example](models/grad_cam_examples/inclusion_example.png) |
-| Patches | ![Patches Example](models/grad_cam_examples/patches_example.png) |
-| Pitted Surface | ![Pitted Surface Example](models/grad_cam_examples/pitted_surface_example.png) |
-| Rolled-in Scale | ![Rolled-in Scale Example](models/grad_cam_examples/rolled-in_scale_example.png) |
-| Scratches | ![Scratches Example](models/grad_cam_examples/scratches_example.png) |
+| Crazing | ![Crazing Example](img/grad_cam_examples/crazing_example.png) |
+| Inclusion | ![Inclusion Example](img/grad_cam_examples/inclusion_example.png) |
+| Patches | ![Patches Example](img/grad_cam_examples/patches_example.png) |
+| Pitted Surface | ![Pitted Surface Example](img/grad_cam_examples/pitted_surface_example.png) |
+| Rolled-in Scale | ![Rolled-in Scale Example](img/grad_cam_examples/rolled-in_scale_example.png) |
+| Scratches | ![Scratches Example](img/grad_cam_examples/scratches_example.png) |
 
 **Key observations:**
 - **Exceptional generalization**: 98.52% accuracy on held-out test set with no overfitting.
@@ -164,12 +164,13 @@ The model correctly identifies defect regions through Grad-CAM heatmaps. Below a
 
 ## 8. Limitations
 
-1. **Small dataset**: Only 1,800 images; model may not generalize to different lighting, camera angles, or surface materials.
-2. **Single backbone**: Only ResNet18 tested; larger models (ResNet50) or different architectures not explored.
-3. **No class imbalance handling**: All classes have equal support; real-world data often has imbalanced defect frequencies.
-4. **Threshold not optimized**: Uses default softmax threshold (0.5); for production, threshold should be tuned based on cost of false positives vs. false negatives.
-5. **No temporal dynamics**: Treats each image independently; real defect detection might benefit from sequence modeling.
-6. **CPU/MPS only**: Not tested on GPU; inference speed on large batches not benchmarked.
+1. **Benchmark saturation**: NEU is a well-separated, clean dataset where 98%+ accuracy is expected for transfer-learning models. High accuracy here does not guarantee performance on real-world defect detection with noisy lighting, varied defect morphologies, class imbalance, or novel defect types. This is a portfolio demonstration, not a production-ready system.
+2. **Small dataset**: Only 1,800 images; model may not generalize to different lighting, camera angles, or surface materials.
+3. **Single backbone**: Only ResNet18 tested; larger models (ResNet50) or different architectures not explored.
+4. **No class imbalance handling**: All classes have equal support; real-world data often has imbalanced defect frequencies.
+5. **Threshold not optimized**: Uses default softmax threshold (0.5); for production, threshold should be tuned based on cost of false positives vs. false negatives.
+6. **No temporal dynamics**: Treats each image independently; real defect detection might benefit from sequence modeling.
+7. **CPU/MPS only**: Not tested on GPU; inference speed on large batches not benchmarked.
 
 ## 9. Future improvements
 
@@ -215,6 +216,7 @@ computer-vision-defect-detector/
 │   ├── test_data.py       # Dataset, transforms
 │   ├── test_predict.py    # Inference
 │   └── test_api.py        # FastAPI endpoints
+├── img/                   # Evaluation outputs (confusion matrix, Grad-CAM)
 ├── models/                # Trained weights (gitignored)
 ├── data/
 │   ├── raw/               # NEU images by class (gitignored)
