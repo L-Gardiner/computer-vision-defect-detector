@@ -109,6 +109,14 @@ make run-app
 # Upload an image → see prediction + Grad-CAM heatmap
 ```
 
+**Streamlit Demo Screenshots:**
+
+| Upload & Predict | Grad-CAM Visualization |
+|------------------|------------------------|
+| ![Streamlit Demo 1](img/streamlit_demo/streamlit_demo_1.png) | ![Streamlit Demo 2](img/streamlit_demo/streamlit_demo_2.png) |
+
+The demo allows you to upload any defect image, get real-time predictions with confidence scores, and visualize the model's attention via Grad-CAM heatmaps.
+
 ### Run FastAPI server
 ```bash
 make run-api
