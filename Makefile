@@ -17,7 +17,7 @@ test:           ## Pytest + coverage
 
 check: lint typecheck test  ## Full local quality gate
 
-run-api:        ## Serve FastAPI locally (docs at http://localhost:8000/docs)
+run-api:        ## Serve FastAPI locally (http://localhost:8000 redirects to /docs)
 	uv run uvicorn defect_detector.api:app --reload
 
 run-app:        ## Serve Streamlit locally

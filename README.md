@@ -120,9 +120,8 @@ The demo allows you to upload any defect image, get real-time predictions with c
 ### Run FastAPI server
 ```bash
 make run-api
-# API at http://localhost:8000
+# API root redirects to Swagger docs at http://localhost:8000/docs
 # POST /predict with image file
-# Swagger docs at http://localhost:8000/docs
 ```
 
 ## 7. Results

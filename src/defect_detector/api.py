@@ -3,6 +3,7 @@
 from pathlib import Path
 
 from fastapi import FastAPI, UploadFile
+from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 
 from defect_detector import __version__
@@ -39,6 +40,12 @@ class PredictionResponse(BaseModel):
     predicted_class: str
     confidence: float
     top_3: list[dict[str, str | float]]
+
+
+@app.get("/")
+async def root():
+    """Redirect root to interactive API docs."""
+    return RedirectResponse(url="/docs")
 
 
 @app.get("/health")
